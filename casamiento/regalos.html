@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regalos — Agus & Silver</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:  #e8e2cc;
+      --ivory:  #f2edd8;
+      --sand:   #c4b488;
+      --muted:  #7a9870;
+      --dark:   #252515;
+      --mid:    #485e3c;
+      --accent: #c05a30;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--ivory); color: var(--dark); font-family: 'Jost', sans-serif; font-weight: 300; line-height: 1.7; }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(247, 243, 238, 0.95);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--sand);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem; height: 64px;
+    }
+    .header-logo { text-decoration: none; display: flex; align-items: center; }
+    nav { display: flex; gap: 2rem; align-items: center; }
+    nav a {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s;
+    }
+    nav a:hover, nav a.active { color: var(--dark); }
+    .header-ctas { display: flex; gap: 0.8rem; align-items: center; }
+    .header-logo-img { height: 80px; width: auto; opacity: 0.75; margin-right: 0.5rem; }
+    .header-ctas .btn { width: 160px; text-align: center; padding: 0.6rem 0; }
+    .btn {
+      font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; padding: 0.5rem 1.4rem;
+      border: 1px solid var(--dark); background: transparent; color: var(--dark);
+      cursor: pointer; text-decoration: none; transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: var(--dark); color: var(--ivory); }
+    .btn.filled { background: var(--dark); color: var(--ivory); }
+    .btn.filled:hover { background: var(--mid); border-color: var(--mid); }
+
+    /* ── HERO ── */
+    .page-hero {
+      padding: 140px 2rem 5rem;
+      text-align: center;
+      background: var(--cream);
+    }
+    .page-eyebrow {
+      font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 1rem;
+    }
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300; font-style: italic; color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+    .divider { width: 60px; height: 1px; background: var(--muted); margin: 0 auto 2rem; }
+    .page-intro {
+      font-size: 1rem; color: var(--mid); line-height: 1.9;
+      max-width: 580px; margin: 0 auto;
+    }
+
+    /* ── GRID DE EXPERIENCIAS ── */
+    .experiencias {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2rem 6rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .exp-card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--sand);
+      overflow: hidden;
+      background: var(--ivory);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .exp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(44,40,37,0.1);
+    }
+
+    .exp-visual {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+
+    /* Gradientes por destino */
+    .exp-visual.raja-ampat  { background: url('exp-raja.jpg') center center / cover no-repeat; }
+    .exp-visual.bali        { background: url('exp-ubud.jpg') center center / cover no-repeat; }
+    .exp-visual.bangkok     { background: url('exp-bangkok.jpg') center center / cover no-repeat; }
+    .exp-visual.tokyo       { background: url('exp-tokyo.jpg') center center / cover no-repeat; }
+    .exp-visual.japon-alps  { background: url('exp-alps.jpg') center center / cover no-repeat; }
+    .exp-visual.hakone      { background: url('exp-hakone.jpg') center center / cover no-repeat; }
+    .exp-visual.komodo      { background: url('exp-komodo.jpg') center center / cover no-repeat; }
+    .exp-visual.fuji        { background: url('exp-fuji.jpg') center center / cover no-repeat; }
+    .exp-visual.libre       { background: url('exp-libre.jpg') center center / cover no-repeat; }
+
+    .exp-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.18);
+    }
+
+    .exp-flag {
+      position: relative;
+      z-index: 1;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      background: rgba(0,0,0,0.25);
+      padding: 0.3rem 0.8rem;
+    }
+
+    .exp-emoji {
+      position: absolute;
+      top: 1.2rem; right: 1.5rem;
+      font-size: 2.2rem;
+      z-index: 1;
+      opacity: 0.9;
+    }
+
+    .exp-body {
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .exp-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .exp-desc {
+      font-size: 0.83rem;
+      color: var(--mid);
+      line-height: 1.75;
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .exp-price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .exp-price-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--dark);
+    }
+
+    .exp-price-alt {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--dark);
+      letter-spacing: 0.02em;
+    }
+
+    .exp-btn {
+      display: block;
+      text-align: center;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.85rem;
+      border: 1px solid var(--dark);
+      background: transparent;
+      color: var(--dark);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+    .exp-btn:hover { background: var(--dark); color: var(--ivory); }
+
+    /* Card libre contribución — ancho completo */
+    .exp-card.libre {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: stretch;
+    }
+    .exp-card.libre .exp-visual {
+      width: 280px;
+      height: auto;
+      flex-shrink: 0;
+    }
+    .exp-card.libre .exp-body {
+      flex-direction: row;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .exp-card.libre .exp-body-text { flex: 1; min-width: 200px; }
+    .exp-card.libre .exp-btn { min-width: 180px; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(20,16,14,0.6);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--ivory);
+      max-width: 460px;
+      width: 100%;
+      padding: 3rem;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute; top: 1.2rem; right: 1.5rem;
+      font-size: 1.4rem; background: none; border: none;
+      cursor: pointer; color: var(--muted); line-height: 1;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--dark); }
+
+    .modal-tag {
+      font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.5rem;
+    }
+    .modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-style: italic; font-weight: 300;
+      color: var(--dark); margin-bottom: 0.3rem;
+    }
+    .modal-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300; color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+    .modal-divider { width: 40px; height: 1px; background: var(--sand); margin-bottom: 1.5rem; }
+
+    .modal-label {
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.3rem;
+    }
+    .modal-value {
+      font-size: 0.9rem; color: var(--dark); font-weight: 400;
+      margin-bottom: 1.2rem; letter-spacing: 0.03em;
+    }
+    .modal-note {
+      font-size: 0.78rem; color: var(--mid); line-height: 1.7;
+      margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--sand);
+    }
+
+    .modal-copy-row {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; margin-bottom: 1rem;
+    }
+
+    .copy-btn {
+      font-family: 'Jost', sans-serif; font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.35rem 0.9rem; border: 1px solid var(--sand);
+      background: transparent; color: var(--mid); cursor: pointer;
+      transition: all 0.2s; white-space: nowrap; flex-shrink: 0;
+    }
+    .copy-btn:hover, .copy-btn.copied { background: var(--mid); color: var(--ivory); border-color: var(--mid); }
+
+    .modal-input {
+      font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 300;
+      width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--sand);
+      background: var(--ivory); color: var(--dark); outline: none;
+      transition: border-color 0.2s;
+    }
+    .modal-input:focus { border-color: var(--muted); }
+    .modal-textarea { resize: vertical; min-height: 80px; }
+
+    .modal-send-btn {
+      width: 100%; margin-top: 1.2rem; padding: 0.9rem;
+      background: var(--dark); color: var(--ivory); border: none;
+      font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .modal-send-btn:hover { background: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); padding: 3rem 2rem; text-align: center;
+    }
+    .footer-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-style: italic; font-weight: 300;
+      color: var(--ivory); margin-bottom: 1.5rem;
+    }
+    .footer-contacts { font-size: 0.8rem; letter-spacing: 0.1em; color: var(--muted); line-height: 2; }
+    .footer-contacts a { color: var(--muted); text-decoration: none; }
+    .footer-contacts a:hover { color: var(--ivory); }
+    .footer-copy { margin-top: 2rem; font-size: 0.7rem; color: rgba(255,255,255,0.2); letter-spacing: 0.15em; }
+
+    @media (max-width: 768px) {
+      header { padding: 0 1.5rem; }
+      nav { display: none; }
+      .exp-card.libre { flex-direction: column; }
+      .exp-card.libre .exp-visual { width: 100%; height: 180px; }
+      .exp-card.libre .exp-body { flex-direction: column; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <a href="index.html" class="header-logo">
+    <img src="logo-header.png" alt="Agus & Silver" style="height:44px; width:auto; display:block;" />
+  </a>
+  <nav>
+    <a href="index.html#horarios">Horarios</a>
+    <a href="index.html#como-llegar">Cómo llegar</a>
+    <a href="regalos.html" class="active">Regalos</a>
+  </nav>
+  <div class="header-ctas">
+    <a href="index.html#rsvp" class="btn filled">Confirmar Asistencia</a>
+    <a href="regalos.html" class="btn">Regalos</a>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<div class="page-hero">
+  <p class="page-eyebrow">Un detalle especial</p>
+  <h1 class="page-title">Regalos</h1>
+  <div class="divider"></div>
+</div>
+
+<!-- ═══ EXPERIENCIAS ═══ -->
+<div class="experiencias">
+
+  <!-- Bangkok -->
+  <div class="exp-card">
+    <div class="exp-visual bangkok">
+<span class="exp-flag">Bangkok · Tailandia</span>
+    </div>
+    <div class="exp-body">
+      <p class="exp-title">Templos en Bangkok</p>
+      <p class="exp-desc">
+        Templos dorados, mercados flotantes, comida callejera increíble y la energía única de una de las ciudades más vibrantes de Asia. Una noche en la ciudad para explorar sin límites.
+      </p>
+      <div class="exp-price">
+        <span class="exp-price-main">USD 80</span>
+        <span class="exp-price-alt">· ARS 120.000</span>
+      </div>
+      <a class="exp-btn" onclick="openModal('Templos en Bangkok', 'USD 80 · ARS 120.000')">Regalá esta experiencia</a>
+    </div>
+  </div>
+
+  <!-- Hakone -->
+  <div class="exp-card">
+    <div class="exp-visual hakone">
+<span class="exp-flag">Hakone · Japón</span>
+    </div>
+    <div class="exp-body">
+      <p class="exp-title">Templos en Hakone</p>
+      <p class="exp-desc">
+        Un día entre templos sintoístas, aguas termales y la vista más icónica del Monte Fuji al fondo. Hakone es el Japón profundo: calma, belleza y tradición a pocos kilómetros de Tokio.
+      </p>
+      <div class="exp-price">
+        <span class="exp-price-main">USD 100</span>
+        <span class="exp-price-alt">· ARS 150.000</span>
+      </div>
+      <a class="exp-btn" onclick="openModal('Templos en Hakone', 'USD 100 · ARS 150.000')">Regalá esta experiencia</a>
+    </div>
+  </div>
+
+  <!-- Ubud -->
+  <div class="exp-card">
+    <div class="exp-visual bali">
+<span class="exp-flag">Ubud · Bali</span>
+    </div>
+    <div class="exp-body">
+      <p class="exp-title">Noche de Relax en Ubud</p>
+      <p class="exp-desc">
+        Vamos a llegar agotados del buceo. Ayudanos a relajarnos en Bali en un hotel de spa, donde podamos descansar y relajarnos como nos merecemos.
+      </p>
+      <div class="exp-price">
+        <span class="exp-price-main">USD 150</span>
+        <span class="exp-price-alt">· ARS 225.000</span>
+      </div>
+      <a class="exp-btn" onclick="openModal('Noche de Relax en Ubud', 'USD 150 · ARS 225.000')">Regalá esta experiencia</a>
+    </div>
+  </div>
+
+  <!-- Tokyo -->
+  <div class="exp-card">
+    <div class="exp-visual tokyo">
+<span class="exp-flag">Tokio · Japón</span>
+    </div>
+    <div class="exp-body">
+      <p class="exp-title">Tokio Gastronómico</p>
+      <p class="exp-desc">
+        Ramen humeante en un callejón de Shinjuku, sushi de mercado en Tsukiji al amanecer, izakayas hasta tarde y street food que no se encuentra en ningún otro lugar. Tokio es, ante todo, una ciudad para comer.
+      </p>
+      <div class="exp-price">
+        <span class="exp-price-main">USD 180</span>
+        <span class="exp-price-alt">· ARS 270.000</span>
+      </div>
+      <a class="exp-btn" onclick="openModal('Tokio Gastronómico', 'USD 180 · ARS 270.000')">Regalá esta experiencia</a>
+    </div>
+  </div>
+
+  <!-- Komodo -->
+  <div class="exp-card">
+    <div class="exp-visual komodo">
+<span class="exp-flag">Komodo · Indonesia</span>
+    </div>
+    <div class="exp-body">
+      <p class="exp-title">Barco en Komodo Island</p>
+      <p class="exp-desc">
+        Un día navegando entre islas volcánicas hacia el hogar del dragón de Komodo. Snorkeling en la Playa Rosa, buceo entre tiburones de punta blanca y avistamiento de los reptiles más grandes del mundo.
+      </p>
+      <div class="exp-price">
+        <span class="exp-price-main">USD 250</span>
+        <span class="exp-price-alt">· ARS 375.000</span>
+      </div>
+      <a class="exp-btn" onclick="openModal('Barco en Komodo Island', 'USD 250 · ARS 375.000')">Regalá esta experiencia</a>
+    </div>
+  </div>
+
+  <!-- Monte Fuji -->
+  <div class="exp-card">
+    <div class="exp-visual fuji">
+<span class="exp-flag">Monte Fuji · Japón</span>
+    </div>
+    <div class="exp-body">
+      <p class="exp-title">Travesía en el Monte Fuji</p>
+      <p class="exp-desc">
+        Subir el volcán más sagrado de Japón es una experiencia que no se olvida. Salida nocturna, amanecer desde la cima a 3.776 metros y vistas infinitas sobre nubes y lago. Un día que vale todo el viaje.
+      </p>
+      <div class="exp-price">
+        <span class="exp-price-main">USD 300</span>
+        <span class="exp-price-alt">· ARS 450.000</span>
+      </div>
+      <a class="exp-btn" onclick="openModal('Travesía en el Monte Fuji', 'USD 300 · ARS 450.000')">Regalá esta experiencia</a>
+    </div>
+  </div>
+
+  <!-- Alpes Japoneses -->
+  <div class="exp-card">
+    <div class="exp-visual japon-alps">
+<span class="exp-flag">Alpes Japoneses · Japón</span>
+    </div>
+    <div class="exp-body">
+      <p class="exp-title">Roadtrip por los Alpes Japoneses</p>
+      <p class="exp-desc">
+        Un roadtrip entre aldeas de montaña con casas de techo de paja, onsen al aire libre bajo la nieve y valles que parecen sacados de un grabado ukiyo-e. De Matsumoto a Shirakawa-go, pasando por los Alpes del centro de Japón.
+      </p>
+      <div class="exp-price">
+        <span class="exp-price-main">USD 400</span>
+        <span class="exp-price-alt">· ARS 570.000</span>
+      </div>
+      <a class="exp-btn" onclick="openModal('Roadtrip por los Alpes Japoneses', 'USD 400 · ARS 570.000')">Regalá esta experiencia</a>
+    </div>
+  </div>
+
+  <!-- Raja Ampat -->
+  <div class="exp-card">
+    <div class="exp-visual raja-ampat">
+<span class="exp-flag">Raja Ampat · Indonesia</span>
+    </div>
+    <div class="exp-body">
+      <p class="exp-title">Liveaboard en Raja Ampat</p>
+      <p class="exp-desc">
+        Siete días navegando por las aguas más biodiversas del planeta. Buceos entre mantarrayas, tiburones de arrecife, peces loro gigantes y corales que cubren el 75% de todas las especies conocidas. El bucket list de todo buceador.
+      </p>
+      <div class="exp-price">
+        <span class="exp-price-main">USD 500</span>
+        <span class="exp-price-alt">· ARS 750.000</span>
+      </div>
+      <a class="exp-btn" onclick="openModal('Liveaboard en Raja Ampat', 'USD 500 · ARS 750.000')">Regalá esta experiencia</a>
+    </div>
+  </div>
+
+  <!-- Libre contribución — full width -->
+  <div class="exp-card libre">
+    <div class="exp-visual libre">
+<span class="exp-flag">Luna de miel</span>
+    </div>
+    <div class="exp-body">
+      <div class="exp-body-text">
+        <p class="exp-title">Libre contribución</p>
+        <p class="exp-desc">
+          Cualquier aporte suma para el viaje de nuestra vida. Sin monto mínimo — lo que salga del corazón.
+        </p>
+      </div>
+      <a class="exp-btn" onclick="openModal('Libre contribución', null)">Contribuir</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ MODAL DE TRANSFERENCIA ═══ -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <p class="modal-tag">Datos para transferir</p>
+    <p class="modal-title" id="modal-exp-name">—</p>
+    <p class="modal-price" id="modal-exp-price"></p>
+    <div class="modal-divider"></div>
+
+    <p class="modal-label">Banco</p>
+    <p class="modal-value">BBVA &nbsp;·&nbsp; Titular: Silvestre Rigal</p>
+
+    <p class="modal-label">CBU ARS</p>
+    <div class="modal-copy-row">
+      <p class="modal-value" id="cbu-value">0170316840000043229246</p>
+      <button class="copy-btn" onclick="copiar('cbu-value', this)">Copiar</button>
+    </div>
+
+    <p class="modal-label">Alias ARS</p>
+    <div class="modal-copy-row">
+      <p class="modal-value" id="alias-value">SILVESTRE.RIGAL.23</p>
+      <button class="copy-btn" onclick="copiar('alias-value', this)">Copiar</button>
+    </div>
+
+    <div class="modal-divider" style="margin:1.5rem 0;"></div>
+
+    <p class="modal-label" style="margin-bottom:0.5rem;">Tu nombre</p>
+    <input id="regalo-nombre" class="modal-input" type="text" placeholder="Nombre y apellido" />
+
+    <p class="modal-label" style="margin-top:1rem; margin-bottom:0.5rem;">Un mensaje para Agus & Silver</p>
+    <textarea id="regalo-mensaje" class="modal-input modal-textarea" placeholder="Opcional — lo que quieras contarles" rows="3"></textarea>
+
+    <button class="modal-send-btn" onclick="enviarRegalo()">Enviar</button>
+    <p id="regalo-ok" style="display:none; text-align:center; margin-top:1rem; color:var(--mid); font-size:0.85rem;">
+      ¡Gracias! Ya recibimos tu mensaje. 🌏
+    </p>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p class="footer-names">Agus &amp; Silver</p>
+  <p class="footer-contacts">
+    Silvestre: <a href="tel:+5411313752888">+54 11 3137 5288</a><br>
+    Agustina: <a href="tel:+31627874662">+31 6 2787 4662</a>
+  </p>
+  <p class="footer-copy">10 · 10 · 2026 &nbsp;·&nbsp; Finca Madero El Roble</p>
+</footer>
+
+<script>
+  const REGALOS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3rGcd103hUCNoiEy7Eb4437JwP5cVEKFYc_IkA6nTkWEIVfsDR4lHFt8pksHLqz6w/exec';
+  let modalMonto = '';
+
+  function openModal(name, price) {
+    document.getElementById('modal-exp-name').textContent = name;
+    document.getElementById('modal-exp-price').textContent = price || '';
+    modalMonto = price || 'Libre contribución';
+    document.getElementById('regalo-nombre').value = '';
+    document.getElementById('regalo-mensaje').value = '';
+    document.getElementById('regalo-ok').style.display = 'none';
+    document.querySelector('.modal-send-btn').style.display = 'block';
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+
+  function copiar(id, btn) {
+    const text = document.getElementById(id).textContent.trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '¡Copiado!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  async function enviarRegalo() {
+    const nombre  = document.getElementById('regalo-nombre').value.trim();
+    const mensaje = document.getElementById('regalo-mensaje').value.trim();
+    const exp     = document.getElementById('modal-exp-name').textContent;
+
+    if (!nombre) { alert('Por favor ingresá tu nombre.'); return; }
+
+    const btn = document.querySelector('.modal-send-btn');
+    btn.textContent = 'ENVIANDO...';
+    btn.disabled = true;
+
+    try {
+      await fetch(REGALOS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, mensaje, monto: modalMonto, experiencia: exp })
+      });
+      btn.style.display = 'none';
+      document.getElementById('regalo-ok').style.display = 'block';
+    } catch(e) {
+      btn.textContent = 'ENVIAR';
+      btn.disabled = false;
+      alert('Hubo un error. Por favor intentá de nuevo.');
+    }
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
