@@ -1085,18 +1085,26 @@
       .regalos-content { padding: 3rem 1.5rem; }
 
       /* Footer */
-      footer { flex-direction: column; align-items: center; padding: 2.5rem 1.5rem; }
-      .footer-logo-edge { height: 160px; padding: 0 0 1rem 0; }
+      footer { flex-direction: column; align-items: center; padding: 2rem 1rem; }
+      .footer-logo-edge { height: 120px; padding: 0 0 0.8rem 0; }
       .footer-inner {
         flex-direction: column;
         align-items: center;
-        gap: 2rem;
+        gap: 1.5rem;
         padding: 0;
         text-align: center;
+        width: 100%;
       }
-      .footer-left { text-align: center; justify-self: center; }
+      .footer-left { text-align: center; justify-self: center; width: 100%; }
       .footer-right { flex-direction: row; align-items: center; }
-      .footer-names { margin-bottom: 0.8rem; }
+      .footer-names { margin-bottom: 0.5rem; }
+      /* Countdown compacto en mobile */
+      .countdown { gap: 0.5rem !important; justify-content: center !important; }
+      .countdown-number { font-size: 1.2rem !important; }
+      .countdown-sep { font-size: 1rem !important; }
+      .countdown-unit span:last-child { font-size: 0.45rem !important; }
+      .countdown-label { text-align: center !important; font-size: 0.55rem; }
+      .footer-copy { font-size: 0.6rem; }
     }
 
     @media (max-width: 480px) {
