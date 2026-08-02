@@ -1146,8 +1146,8 @@
       <span class="timeline-event">Recepción</span>
     </div>
     <div style="padding:2rem 2rem; text-align:center;">
-      <span class="timeline-time">02:00 hs</span>
-      <span class="timeline-event">Finaliza</span>
+      <span class="timeline-time">22:00 hs</span>
+      <span class="timeline-event">Fiesta</span>
     </div>
   </div>
   <img src="horarios-deco-mobile.png" alt="" style="width:320px; height:auto; display:block; margin:1rem 0 0 0;" />
@@ -1169,9 +1169,9 @@
       <span style="font-family:'Montserrat',sans-serif; font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:#485e3c; font-weight:500; min-width:75px; text-align:left;">Recepción</span>
     </div>
     <div style="padding:0.7rem 1rem; display:flex; align-items:center; justify-content:center; gap:1rem;">
-      <span style="font-family:'Playfair Display',serif; font-size:1.2rem; font-style:italic; color:#485e3c; min-width:75px; text-align:right;">02:00 hs</span>
+      <span style="font-family:'Playfair Display',serif; font-size:1.2rem; font-style:italic; color:#485e3c; min-width:75px; text-align:right;">22:00 hs</span>
       <span style="width:1px; height:1rem; background:#c4b488; flex-shrink:0;"></span>
-      <span style="font-family:'Montserrat',sans-serif; font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:#485e3c; font-weight:500; min-width:75px; text-align:left;">Finaliza</span>
+      <span style="font-family:'Montserrat',sans-serif; font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:#485e3c; font-weight:500; min-width:75px; text-align:left;">Fiesta</span>
     </div>
   </div>
   <img src="horarios-deco-mobile.png" alt="" style="width:220px; height:auto; display:block; margin:0.4rem 0 0 -1.2rem;" />
@@ -1355,7 +1355,7 @@
       entries.forEach(e => {
         if (e.isIntersecting) {
           running = true;
-          speed = 0.6;
+          speed = 1.8;
           animate();
         } else {
           running = false;
@@ -1367,7 +1367,7 @@
 
     // Pausa al hover
     track.addEventListener('mouseenter', () => speed = 0);
-    track.addEventListener('mouseleave', () => speed = 0.6);
+    track.addEventListener('mouseleave', () => speed = 1.8);
   })();
 </script>
 
