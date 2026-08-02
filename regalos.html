@@ -639,18 +639,18 @@
     </div>
   </div>
 
-  <!-- Noche en Kyoto -->
+  <!-- Estadía en Kyoto -->
   <div class="exp-card">
     <div class="exp-visual kyoto">
       <span class="exp-flag">Kyoto · Japón</span>
     </div>
     <div class="exp-body">
-      <p class="exp-title">Noche en Kyoto</p>
+      <p class="exp-title">Estadía en Kyoto</p>
       <div class="exp-price">
         <span class="exp-price-main">USD 800</span>
         <span class="exp-price-alt">· ARS 1.200.000</span>
       </div>
-      <a class="exp-btn" onclick="openModal('Noche en Kyoto', 'USD 800 · ARS 1.200.000')">Regalá esta experiencia</a>
+      <a class="exp-btn" onclick="openModal('Estadía en Kyoto', 'USD 800 · ARS 1.200.000')">Regalá esta experiencia</a>
     </div>
   </div>
 
@@ -699,16 +699,16 @@
     </div>
   </div>
 
-  <!-- Libre contribución — full width -->
+  <!-- Monto libre para seguir sumando experiencias juntos — full width -->
   <div class="exp-card libre">
     <div class="exp-visual libre">
 <span class="exp-flag">Luna de miel</span>
     </div>
     <div class="exp-body">
       <div class="exp-body-text">
-        <p class="exp-title">Libre contribución</p>
+        <p class="exp-title">Monto libre para seguir sumando experiencias juntos</p>
       </div>
-      <a class="exp-btn" onclick="openModal('Libre contribución', null)">Contribuir</a>
+      <a class="exp-btn" onclick="openModal('Monto libre para seguir sumando experiencias juntos', null)">Contribuir</a>
     </div>
   </div>
 
@@ -818,7 +818,7 @@
   function openModal(name, price) {
     document.getElementById('modal-exp-name').textContent = name;
     document.getElementById('modal-exp-price').textContent = price || '';
-    modalMonto = price || 'Libre contribución';
+    modalMonto = price || 'Monto libre para seguir sumando experiencias juntos';
     document.getElementById('regalo-nombre').value = '';
     document.getElementById('regalo-mensaje').value = '';
     document.getElementById('regalo-ok').style.display = 'none';
