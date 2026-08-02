@@ -140,6 +140,8 @@
     .exp-visual.tren-bala   { background: url('exp-tren.jpg') center center / cover no-repeat; }
     .exp-visual.nara        { background: url('exp-nara.jpg') center center / cover no-repeat; }
     .exp-visual.pasajes     { background: url('exp-pasajes.jpg') center center / cover no-repeat; }
+    .exp-visual.hotel       { background: url('exp-hotel.jpg') center center / cover no-repeat; }
+    .exp-visual.spa         { background: url('exp-spa.jpg') center center / cover no-repeat; }
 
     .exp-visual::before {
       content: '';
@@ -687,6 +689,37 @@
   </div>
 
   <!-- Pasajes aéreos -->
+  <!-- Hotel de lujo -->
+  <div class="exp-card">
+    <div class="exp-visual hotel">
+      <span class="exp-flag">Hotel · Luna de miel</span>
+    </div>
+    <div class="exp-body">
+      <p class="exp-title">Estadía en hotel de lujo</p>
+      <div class="exp-price">
+        <span class="exp-price-main">USD 1000</span>
+        <span class="exp-price-alt">· ARS 1.500.000</span>
+      </div>
+      <a class="exp-btn" onclick="openModal('Estadía en hotel de lujo', 'USD 1000 · ARS 1.500.000')">Regalá esta experiencia</a>
+    </div>
+  </div>
+
+  <!-- Día de spa -->
+  <div class="exp-card">
+    <div class="exp-visual spa">
+      <span class="exp-flag">Spa · Relax</span>
+    </div>
+    <div class="exp-body">
+      <p class="exp-title">Día de spa para los dos</p>
+      <div class="exp-price">
+        <span class="exp-price-main">USD 1200</span>
+        <span class="exp-price-alt">· ARS 1.800.000</span>
+      </div>
+      <a class="exp-btn" onclick="openModal('Día de spa para los dos', 'USD 1200 · ARS 1.800.000')">Regalá esta experiencia</a>
+    </div>
+  </div>
+
+  <!-- Pasajes aéreos -->
   <div class="exp-card">
     <div class="exp-visual pasajes">
       <span class="exp-flag">Luna de miel</span>
@@ -694,23 +727,23 @@
     <div class="exp-body">
       <p class="exp-title">Pasajes aéreos</p>
       <div class="exp-price">
-        <span class="exp-price-main">USD 1000</span>
-        <span class="exp-price-alt">· ARS 1.500.000</span>
+        <span class="exp-price-main">USD 1500</span>
+        <span class="exp-price-alt">· ARS 2.250.000</span>
       </div>
-      <a class="exp-btn" onclick="openModal('Pasajes aéreos', 'USD 1000 · ARS 1.500.000')">Regalá esta experiencia</a>
+      <a class="exp-btn" onclick="openModal('Pasajes aéreos', 'USD 1500 · ARS 2.250.000')">Regalá esta experiencia</a>
     </div>
   </div>
 
-  <!-- Monto libre para seguir sumando experiencias juntos — full width -->
+  <!-- Monto libre — full width -->
   <div class="exp-card libre">
     <div class="exp-visual libre">
-<span class="exp-flag">Luna de miel</span>
+      <span class="exp-flag">Luna de miel</span>
     </div>
     <div class="exp-body">
       <div class="exp-body-text">
         <p class="exp-title">Monto libre para seguir sumando experiencias juntos</p>
       </div>
-      <a class="exp-btn" onclick="openModal('Monto libre para seguir sumando experiencias juntos', null)">Contribuir</a>
+      <a class="exp-btn" onclick="openModal('Monto libre para seguir sumando experiencias juntos', null)">Regala experiencias</a>
     </div>
   </div>
 
@@ -776,16 +809,28 @@
     <p class="modal-label">Banco</p>
     <p class="modal-value">BBVA &nbsp;·&nbsp; Titular: Silvestre Rigal</p>
 
-    <p class="modal-label">CBU ARS</p>
+    <p class="modal-label" style="margin-top:0.8rem; color:var(--accent); letter-spacing:0.15em;">— Pesos ARS —</p>
+    <p class="modal-label">CBU</p>
     <div class="modal-copy-row">
       <p class="modal-value" id="cbu-value">0170316840000043229246</p>
       <button class="copy-btn" onclick="copiar('cbu-value', this)">Copiar</button>
     </div>
-
-    <p class="modal-label">Alias ARS</p>
+    <p class="modal-label">Alias</p>
     <div class="modal-copy-row">
       <p class="modal-value" id="alias-value">SILVESTRE.RIGAL.23</p>
       <button class="copy-btn" onclick="copiar('alias-value', this)">Copiar</button>
+    </div>
+
+    <p class="modal-label" style="margin-top:1rem; color:var(--accent); letter-spacing:0.15em;">— Dólares USD —</p>
+    <p class="modal-label">CBU</p>
+    <div class="modal-copy-row">
+      <p class="modal-value" id="cbu-usd-modal">0170023744000061618075</p>
+      <button class="copy-btn" onclick="copiar('cbu-usd-modal', this)">Copiar</button>
+    </div>
+    <p class="modal-label">Alias</p>
+    <div class="modal-copy-row">
+      <p class="modal-value" id="alias-usd-modal">SILVER.RIGAL.USD</p>
+      <button class="copy-btn" onclick="copiar('alias-usd-modal', this)">Copiar</button>
     </div>
 
     <div class="modal-divider" style="margin:1.5rem 0;"></div>
@@ -796,7 +841,7 @@
     <p class="modal-label" style="margin-top:1rem; margin-bottom:0.5rem;">Un mensaje para Agus & Silver</p>
     <textarea id="regalo-mensaje" class="modal-input modal-textarea" placeholder="" rows="3"></textarea>
 
-    <p class="modal-label" style="margin-top:1rem; margin-bottom:0.5rem;">Adjuntá el comprobante (opcional)</p>
+    <p class="modal-label" style="margin-top:1rem; margin-bottom:0.5rem;">Adjuntá el comprobante</p>
     <label style="cursor:pointer; display:block;">
       <input type="file" id="regalo-comprobante" accept="image/*,.pdf" style="display:none;" onchange="mostrarArchivo(this)" />
       <span id="comprobante-btn-text" style="display:inline-block; font-family:'Jost',sans-serif; font-size:0.7rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; padding:0.6rem 1.2rem; border:1px solid var(--sand); color:var(--mid); transition:all 0.2s;">📎 Seleccionar archivo</span>
