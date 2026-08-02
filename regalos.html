@@ -796,6 +796,13 @@
     <p class="modal-label" style="margin-top:1rem; margin-bottom:0.5rem;">Un mensaje para Agus & Silver</p>
     <textarea id="regalo-mensaje" class="modal-input modal-textarea" placeholder="" rows="3"></textarea>
 
+    <p class="modal-label" style="margin-top:1rem; margin-bottom:0.5rem;">Adjuntá el comprobante (opcional)</p>
+    <label style="cursor:pointer; display:block;">
+      <input type="file" id="regalo-comprobante" accept="image/*,.pdf" style="display:none;" onchange="mostrarArchivo(this)" />
+      <span id="comprobante-btn-text" style="display:inline-block; font-family:'Jost',sans-serif; font-size:0.7rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; padding:0.6rem 1.2rem; border:1px solid var(--sand); color:var(--mid); transition:all 0.2s;">📎 Seleccionar archivo</span>
+    </label>
+    <p id="comprobante-nombre" style="font-size:0.72rem; color:var(--muted); margin-top:0.4rem; display:none;"></p>
+
     <button class="modal-send-btn" onclick="enviarRegalo()">Enviar</button>
     <p id="regalo-ok" style="display:none; text-align:center; margin-top:1rem; color:var(--mid); font-size:0.85rem;">
       ¡Gracias! Ya recibimos tu mensaje. 🌏
@@ -847,10 +854,29 @@
     });
   }
 
+  function mostrarArchivo(input) {
+    const nombre = document.getElementById('comprobante-nombre');
+    const btn = document.getElementById('comprobante-btn-text');
+    if (input.files.length > 0) {
+      nombre.textContent = '✓ ' + input.files[0].name;
+      nombre.style.display = 'block';
+      btn.textContent = '📎 ' + input.files[0].name.substring(0, 25) + (input.files[0].name.length > 25 ? '...' : '');
+    }
+  }
+
   async function enviarRegalo() {
     const nombre  = document.getElementById('regalo-nombre').value.trim();
     const mensaje = document.getElementById('regalo-mensaje').value.trim();
     const exp     = document.getElementById('modal-exp-name').textContent;
+    const fileInput = document.getElementById('regalo-comprobante');
+    let comprobante = null;
+    if (fileInput.files.length > 0) {
+      comprobante = await new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onload = e => resolve({ nombre: fileInput.files[0].name, data: e.target.result });
+        reader.readAsDataURL(fileInput.files[0]);
+      });
+    }
 
     if (!nombre) { alert('Por favor ingresá tu nombre.'); return; }
 
@@ -863,7 +889,7 @@
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre, mensaje, monto: modalMonto, experiencia: exp })
+        body: JSON.stringify({ nombre, mensaje, monto: modalMonto, experiencia: exp, comprobante })
       });
       btn.style.display = 'none';
       document.getElementById('regalo-ok').style.display = 'block';
