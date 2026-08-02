@@ -319,6 +319,95 @@
     }
     .modal-send-btn:hover { background: var(--accent); }
 
+    /* ── TABS ── */
+    .tabs-nav {
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid var(--sand);
+      background: var(--ivory);
+      position: sticky;
+      top: 64px;
+      z-index: 50;
+    }
+    .tab-btn {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      background: none;
+      border: none;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--dark); }
+    .tab-btn.active { color: var(--dark); border-bottom-color: var(--dark); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .cuenta-card {
+      max-width: 480px;
+      margin: 4rem auto;
+      border: 1px solid var(--sand);
+      background: var(--ivory);
+      padding: 2.5rem 3rem;
+      text-align: center;
+    }
+    .cuenta-titulo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+    }
+    .cuenta-banco {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--mid);
+      margin-bottom: 1.5rem;
+    }
+    .cuenta-divider { width: 40px; height: 1px; background: var(--sand); margin: 0 auto 1.5rem; }
+    .cuenta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--sand);
+      gap: 1rem;
+    }
+    .cuenta-row:last-of-type { border-bottom: none; }
+    .cuenta-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      flex-shrink: 0;
+    }
+    .cuenta-valor {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      color: var(--dark);
+      text-align: right;
+      word-break: break-all;
+    }
+    .cuenta-copy-btn {
+      font-size: 0.58rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.3rem 0.7rem;
+      border: 1px solid var(--sand); background: transparent;
+      color: var(--mid); cursor: pointer; flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .cuenta-copy-btn:hover, .cuenta-copy-btn.copied {
+      background: var(--mid); color: var(--ivory); border-color: var(--mid);
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--dark); padding: 3rem 2rem; text-align: center;
@@ -359,6 +448,16 @@
     <a href="regalos.html" class="btn">Regalos</a>
   </div>
 </header>
+
+<!-- ═══ TABS NAV ═══ -->
+<nav class="tabs-nav">
+  <button class="tab-btn active" onclick="switchTab('regalos', this)">Regalos</button>
+  <button class="tab-btn" onclick="switchTab('usd', this)">CBU dólares</button>
+  <button class="tab-btn" onclick="switchTab('ars', this)">CBU pesos</button>
+</nav>
+
+<!-- ═══ PANEL REGALOS ═══ -->
+<div class="tab-panel active" id="panel-regalos">
 
 <!-- ═══ HERO ═══ -->
 <div class="page-hero">
@@ -512,6 +611,54 @@
 
 </div>
 
+</div><!-- fin panel-regalos -->
+
+<!-- ═══ PANEL USD ═══ -->
+<div class="tab-panel" id="panel-usd">
+  <div class="cuenta-card">
+    <p class="cuenta-titulo">Cuenta USD</p>
+    <p class="cuenta-banco">BBVA</p>
+    <div class="cuenta-divider"></div>
+    <div class="cuenta-row">
+      <span class="cuenta-label">Titular</span>
+      <span class="cuenta-valor">Silvestre Rigal</span>
+    </div>
+    <div class="cuenta-row">
+      <span class="cuenta-label">CBU</span>
+      <span class="cuenta-valor" id="cbu-usd">0170023744000061618075</span>
+      <button class="cuenta-copy-btn" onclick="copiarCuenta('cbu-usd', this)">Copiar</button>
+    </div>
+    <div class="cuenta-row">
+      <span class="cuenta-label">Alias</span>
+      <span class="cuenta-valor" id="alias-usd">silver.rigal.usd</span>
+      <button class="cuenta-copy-btn" onclick="copiarCuenta('alias-usd', this)">Copiar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PANEL ARS ═══ -->
+<div class="tab-panel" id="panel-ars">
+  <div class="cuenta-card">
+    <p class="cuenta-titulo">Cuenta ARS</p>
+    <p class="cuenta-banco">BBVA</p>
+    <div class="cuenta-divider"></div>
+    <div class="cuenta-row">
+      <span class="cuenta-label">Titular</span>
+      <span class="cuenta-valor">Silvestre Rigal</span>
+    </div>
+    <div class="cuenta-row">
+      <span class="cuenta-label">CBU</span>
+      <span class="cuenta-valor" id="cbu-ars">0170316840000043229246</span>
+      <button class="cuenta-copy-btn" onclick="copiarCuenta('cbu-ars', this)">Copiar</button>
+    </div>
+    <div class="cuenta-row">
+      <span class="cuenta-label">Alias</span>
+      <span class="cuenta-valor" id="alias-ars">SILVESTRE.RIGAL.23</span>
+      <button class="cuenta-copy-btn" onclick="copiarCuenta('alias-ars', this)">Copiar</button>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ MODAL DE TRANSFERENCIA ═══ -->
 <div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
   <div class="modal">
@@ -623,6 +770,22 @@
   }
 
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function copiarCuenta(id, btn) {
+    const text = document.getElementById(id).textContent.trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '¡Copiado!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
 </script>
 </body>
 </html>
