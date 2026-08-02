@@ -63,7 +63,7 @@
         font-size: 0.52rem; letter-spacing: 0.08em; white-space: nowrap;
       }
       /* Tabs mobile */
-      .tab-btn { padding: 0.8rem 1rem; font-size: 0.68rem; }
+      .tab-btn { padding: 0.75rem 0.3rem; font-size: 0.62rem; letter-spacing: 0.04em; }
       /* Cuenta card mobile */
       .cuenta-card { margin: 2rem 1rem; padding: 1.5rem 1.2rem; }
       .cuenta-row { flex-wrap: wrap; gap: 0.4rem; }
@@ -346,24 +346,28 @@
     /* ── TABS ── */
     .tabs-nav {
       display: flex;
-      justify-content: center;
+      justify-content: stretch;
       border-bottom: 1px solid var(--sand);
       background: var(--ivory);
       position: sticky;
-      top: 64px;
+      top: 52px;
       z-index: 50;
+      width: 100%;
     }
     .tab-btn {
+      flex: 1;
       font-family: 'Jost', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       font-weight: 400;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.06em;
       color: var(--muted);
       background: none;
       border: none;
-      padding: 1rem 2rem;
+      padding: 0.9rem 0.5rem;
       cursor: pointer;
       border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      text-align: center;
       transition: color 0.2s, border-color 0.2s;
       white-space: nowrap;
     }
